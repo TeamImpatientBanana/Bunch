@@ -6,7 +6,7 @@
 }
 	
 
-.bookmarkcontainer {
+.bookmarkContainer {
 	text-align: center;
 }
 
@@ -33,7 +33,7 @@
   -webkit-user-drag: element;
 }
 
-.bookmarkcontainer.over {
+.bookmarkContainer.over {
   background: gray;
 }
 

@@ -16,12 +16,24 @@
 
 
 	<script>
-	window.onload = function test() {
+
+	window.onload = function getAllBookmarkIds() {
+		var bookmarksArray = JSON.parse(localStorage.getItem('bookmarks'));
+		bookmarksIdsArray = Object.keys(bookmarksArray);
+		console.log(bookmarksIdsArray);
+		console.log(bookmarksArray);
+	}
+
+
+
+	/*
+	function test() {
 		bookmarkArray = JSON.parse(localStorage.getItem('bookmarks'));
 		console.log((new Date()).getTime());
 		//bookmarkArray[(new Date()).getTime()];
-		console.log(bookmarkArray[0].name);
+		console.log(bookmarkArray);
 	}
+	*/
 	function storeBookmark() {
 		// check for browser's local storage support using Modernizr
 		if (Modernizr.localstorage) {
@@ -68,10 +80,11 @@
 	function bookmarkData() {
 		// define bookmark object
 		var bookmark = {};
-		bookmark.id = (new Date()).getTime();
+		//bookmark.id = (new Date()).getTime();
 		bookmark.name = document.getElementById('bookmarkName').value;
 		bookmark.url = document.getElementById('bookmarkURL').value;
 		bookmark.annotation = document.getElementById('bookmarkAnnotation').value;
+		bookmark.icon ="Trunk/pinkieicon.png";
 		bookmark.folder = "/";
 
 		// tags will be in an array
