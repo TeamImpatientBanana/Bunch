@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="UTF-8">
+  <title>Ver1</title>
+  <!--[if lte IE 8]>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/combo?pure/0.5.0/base-min.css&pure/0.5.0/grids-min.css&pure/0.5.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="http://yui.yahooapis.com/combo?pure/0.5.0/base-min.css&pure/0.5.0/grids-min.css&pure/0.5.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+
+  <input name="bookmarkName" id="bookmarkName" type="text" placeholder="Bookmark Name" /><br />
+  <input name="bookmarkURL" id="bookmarkURL" type="text" placeholder="Bookmark URL" /><br />
+  <input name="bookmarkAnnotation" id="bookmarkAnnotation" type="text" placeholder="Bookmark Annotation" /><br />
+  <button onclick="storeBookmark()">Bookmark</button>
+
+  <div class="pure-g" id="metaBookmarkContainer">
+
+  </div>
+
+  <script src="./modernizr.localStorage.js"></script>
+  <script type="text/javascript" src="./generatebookmarks.js"></script>
+  <script type="text/javascript" src="./dnd.js"></script>
+  <script>
+    window.onload = refreshIdArray;
+  </script>
+</body>
+  
+</html>
