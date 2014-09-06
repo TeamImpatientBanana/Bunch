@@ -16,6 +16,12 @@
 
 
 	<script>
+	window.onload = function test() {
+		bookmarkArray = JSON.parse(localStorage.getItem('bookmarks'));
+		console.log((new Date()).getTime());
+		//bookmarkArray[(new Date()).getTime()];
+		console.log(bookmarkArray[0].name);
+	}
 	function storeBookmark() {
 		// check for browser's local storage support using Modernizr
 		if (Modernizr.localstorage) {
@@ -28,6 +34,7 @@
 			*/
 			// The array we use to store the bookmarks
 			var bookmarkArray = [];
+			console.log(bookmarkArray);
 			// The new bookmark to be pushed to the array
 			var newBookmark = bookmarkData();
 			// If they have nothing in storage, run this
@@ -39,6 +46,7 @@
 		    	// get the bookmark array
 			    bookmarkArray = JSON.parse(localStorage.getItem('bookmarks'));
 			    console.log(bookmarkArray);
+
 			    // Push the new data (whether it be an object or anything else) onto the array
 			    bookmarkArray.push(newBookmark);
 
@@ -60,9 +68,11 @@
 	function bookmarkData() {
 		// define bookmark object
 		var bookmark = {};
+		bookmark.id = (new Date()).getTime();
 		bookmark.name = document.getElementById('bookmarkName').value;
 		bookmark.url = document.getElementById('bookmarkURL').value;
 		bookmark.annotation = document.getElementById('bookmarkAnnotation').value;
+		bookmark.folder = "/";
 
 		// tags will be in an array
 		//bookmark.tags = ["search", "google"];
