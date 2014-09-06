@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Storage test!</title>
+	<script src="modernizr.localStorage.js"></script>
+
+
+
+</head>
+
+<body>
+	<input name="bookmarkName" id="bookmarkName" type="text" placeholder="Bookmark Name" /><br />
+	<input name="bookmarkURL" id="bookmarkURL" type="text" placeholder="Bookmark URL" /><br />
+	<input name="bookmarkAnnotation" id="bookmarkAnnotation" type="text" placeholder="Bookmark Annotation" /><br />
+	<button onclick="storeBookmark()">Bookmark</button>
+
+
+	<script>
+	function storeBookmark() {
+		// check for browser's local storage support using Modernizr
+		if (Modernizr.localstorage) {
+			/*
+			if (localStorage.length = 0) {
+				var bookmarkArray = [];
+				var newBookmark = bookmarkData();
+				localStorage.setItem('newBookmark', JSON.stringify(bookmarkArray));
+			}
+			*/
+			// The array we use to store the bookmarks
+			var bookmarkArray = [];
+			// The new bookmark to be pushed to the array
+			var newBookmark = bookmarkData();
+			// If they have nothing in storage, run this
+		    if (localStorage.length == 0) {
+		    	bookmarkArray.push(newBookmark);
+		    	localStorage.setItem('bookmarks', JSON.stringify(bookmarkArray));
+		    }
+		    else {
+		    	// get the bookmark array
+			    bookmarkArray = JSON.parse(localStorage.getItem('bookmarks'));
+			    console.log(bookmarkArray);
+			    // Push the new data (whether it be an object or anything else) onto the array
+			    bookmarkArray.push(newBookmark);
+
+			    
+			    // Re-serialize the array back into a string and store it in localStorage
+			    localStorage.setItem('bookmarks', JSON.stringify(bookmarkArray));
+				// parse the object from local storage as JSON then console log it
+				console.log(JSON.parse(localStorage.getItem('bookmarks')));
+				
+			}
+		}
+		else {
+
+			// if the browser doesn't support it, send an alert
+			alert('Cannot store user preferences as your browser do not support local storage');
+
+		}
+	}
+	function bookmarkData() {
+		// define bookmark object
+		var bookmark = {};
+		bookmark.name = document.getElementById('bookmarkName').value;
+		bookmark.url = document.getElementById('bookmarkURL').value;
+		bookmark.annotation = document.getElementById('bookmarkAnnotation').value;
+
+		// tags will be in an array
+		//bookmark.tags = ["search", "google"];
+
+		console.log(bookmark);
+
+		return bookmark;
+	}
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Storage test!</title>
+	<script src="modernizr.localStorage.js"></script>
+
+</head>
+
+
+<body onload="applySettings()">
+
+		<label>Select your BG color: </label>
+		<input id="favcolor" type="color" value="#ffffff" />
+		 
+		<label>Select Font Size: </label>
+		<input id="fontwt" type="number" max="14" min="10" value="13" />
+		 
+		<button onclick="setSettings()">Submit</button>
+		<button onclick="clearSettings()">Clear</button>
+
+	<script>
+	function setSettings() {
+		if (Modernizr.localstorage) {
+			console.log("localStorage enabled");
+			var favcolor = document.getElementById('favcolor').value;
+			var fontwt = document.getElementById('fontwt').value;
+			localStorage.setItem('bgcolor', favcolor);
+			localStorage.fontweight.fontwt;
+		} else {
+			alert('Cannot store user preferences as your browser do not support local storage');
+		}
+	}
+	function applySettings() {
+		if (localStorage.length != 0) {
+			document.body.style.backgroundColor = localStorage.getElementById('bgcolor');
+			document.body.style.fontSize = localStorage.fontweight + 'px';
+			document.getElementById('favcolor').value = localStorage.bgcolor;
+			document.getElementById('fontwt').value = localStorage.fontweight;
+		}
+		else {
+			document.body.style.backgroundColor = '#FFFFFF';
+			document.body.style.fontSize = '13px';
+			document.getElementById('favcolor').value = '#FFFFFF';
+			document.getElementById('fontwt').value = '13';
+		}
+	}
+	function clearSettings() {
+        localStorage.removeItem("bgcolor");
+        localStorage.removeItem("fontweight");
+        document.body.style.backgroundColor = '#FFFFFF';
+        document.body.style.fontSize = '13px';
+        document.getElementById('favcolor').value = '#FFFFFF';
+        document.getElementById('fontwt').value = '13';
+    }
+	</script>
+
+</body>
+</html>
