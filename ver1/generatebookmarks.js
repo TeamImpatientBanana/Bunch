@@ -133,7 +133,13 @@ function dragInData(linkOrText) {
 	// tags will be in an array
 	//bookmark.tags = ["search", "google"];
 
+<<<<<<< HEAD
 	console.log("bookmark = "+bookmark);
+=======
+	console.log(bookmark);
+	bookmarkArray.push(bookmark);
+	localStorage.setItem('bookmarks', JSON.stringify(bookmarkArray));
+>>>>>>> origin/master
 
 	refreshIdArray();
 
