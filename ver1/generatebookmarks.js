@@ -55,7 +55,7 @@ function makeABookmark(key) {
 	var annotation = bookmarksArray[key].annotation;
 
 	
-	var singleBookmarkHTML = "<div class='pure-u-1-3 pure-u-sm-1-6 pure-u-md-1-8 pure-u-lg-1-12 pure-u-xl-1-24 bookmarkcontainer "+key+"' draggable='true'><a href='"+url+"' title='"+name+"'><img draggable='false' class='bookmarkicon' src='"+icon+"'></a><div class='bookmarkname'>"+annotation+"</div></div>";
+	var singleBookmarkHTML = "<div draggable='true' class='pure-u-1-3 pure-u-sm-1-6 pure-u-md-1-8 pure-u-lg-1-12 pure-u-xl-1-24 bookmarkcontainer "+key+"' draggable='true'><a target='_blank' href='"+url+"' title='"+name+"'><img draggable='false' class='bookmarkicon' src='"+icon+"'></a><div class='bookmarkname'>"+annotation+"</div></div>";
 
     return singleBookmarkHTML;
 }

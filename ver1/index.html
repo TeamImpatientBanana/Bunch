@@ -16,10 +16,13 @@
 
 <body>
 
-  <input name="bookmarkName" id="bookmarkName" type="text" placeholder="Bookmark Name" /><br />
-  <input name="bookmarkURL" id="bookmarkURL" type="text" placeholder="Bookmark URL" /><br />
-  <input name="bookmarkAnnotation" id="bookmarkAnnotation" type="text" placeholder="Bookmark Annotation" /><br />
-  <button onclick="storeBookmark()">Bookmark</button>
+  <form onsubmit="storeBookmark();">
+    <input name="bookmarkName" id="bookmarkName" type="text" placeholder="Bookmark Name" required />
+    <input name="bookmarkURL" id="bookmarkURL" type="url" placeholder="Bookmark URL" required />
+    <input name="bookmarkAnnotation" id="bookmarkAnnotation" type="text" placeholder="Bookmark Annotation" />
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset">
+  </form>
 
   <div class="pure-g" id="metaBookmarkContainer">
 
