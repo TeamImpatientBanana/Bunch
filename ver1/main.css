@@ -40,3 +40,7 @@
 .bookmarkfolder.over {
   background: gray;
 }
+
+#metaBookmarkContainer {
+  height: 1000px;
+}

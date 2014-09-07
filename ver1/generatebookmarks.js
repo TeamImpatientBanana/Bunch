@@ -1,11 +1,13 @@
 function refreshIdArray() {
 	var allBookmarksKeysArray = [];
-	allBookmarksKeysArray = getAllBookmarkKeys();8
+	allBookmarksKeysArray = getAllBookmarkKeys();
 
 	var currentFolderOrder = "orderByKey";
 	var currentFolder = "/";
 
 	loadPage(allBookmarksKeysArray, currentFolderOrder, currentFolder);
+	console.log("refreshIdArray = ");
+	console.log(JSON.parse(localStorage.getItem('bookmarks')));
 }
 
 function getAllBookmarkKeys() {
@@ -37,7 +39,7 @@ function loadPage(allBookmarksKeysArray, currentFolderOrder, currentFolder) {
 
 		var bookmarksArray = JSON.parse(localStorage.getItem('bookmarks'));
 
-		for (var count = 0; count < i; ++count) {
+		for (var count = 0; count < i; count++) {
 			var key = allBookmarksKeysArray[count];
 			if (currentFolder == bookmarksArray[key].folder) {
 				codeOfBookmarksOnPage += makeABookmark(key);
@@ -63,6 +65,30 @@ function makeABookmark(key) {
 	var singleBookmarkHTML = "<div draggable='true' class='pure-u-1-3 pure-u-sm-1-6 pure-u-md-1-8 pure-u-lg-1-12 pure-u-xl-1-24 bookmarkcontainer' id='"+key+"' draggable='true'><a target='_blank' href='"+url+"' title='"+name+"'><img draggable='false' class='bookmarkicon' src='"+icon+"'></a><div class='bookmarkname'>"+annotation+"</div></div>";
 
     return singleBookmarkHTML;
+}
+
+function makeAFolder(path, currentPath) {
+	console.log("Entered make a folder");
+
+	// define bookmark object
+	var bookmark = {};
+
+	bookmark.name = path;
+	bookmark.url = "";
+	bookmark.annotation = path;
+	bookmark.icon = "fluttershyfolder.png";
+	bookmark.folder = currentPath;
+
+	// get the array from local storage to check it
+	var checkBookmarkArray = JSON.parse(localStorage.getItem('bookmarks'));
+
+	// bookmarkArray[] needs to be defined here too
+	var bookmarkArray = [];
+
+	// different parameters for different local storage lengths
+	pushToArray(bookmarkArray, bookmark);
+	refreshIdArray();
+
 }
 
 function storeBookmark() {
@@ -144,3 +170,9 @@ function pushToArray(bookmarkArray, newBookmark) {
 	    localStorage.setItem('bookmarks', JSON.stringify(bookmarkArray));
 	}
 }
+/*
+function Update(keyValue, newKey, newValue) {
+	keyValue.Key = newKey;
+	keyValue.Value = newValue; 
+}
+*/

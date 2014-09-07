@@ -1,6 +1,7 @@
 function resetEventListeners() {
   var bookmarks = document.querySelectorAll('.bookmarkcontainer');
-  console.log("starting bookmarks = "+bookmarks);
+  console.log("starting bookmarks = ");
+  console.log(bookmarks);
 
   var folders = document.querySelectorAll('.bookmarkfolder');
 
@@ -46,15 +47,45 @@ function bookmarkHandleDrop() {
   this.style.opacity = '1.0';
 
   var draggedUrl = event.dataTransfer.getData("text/uri-list");
-
   var checkBookmarkArray = JSON.parse(localStorage.getItem('bookmarks'));
+  var draggedOntoUrl = checkBookmarkArray[this.id].url;
 
-  // compare this.id with array
+  checkBookmarkKeysArray = getAllBookmarkKeys();
+  var i = checkBookmarkKeysArray.length;
 
-  draggedOntoUrl = checkBookmarkArray[this.id].url;
+  var currentFolder = checkBookmarkArray[this.id].folder;
 
+  for (var count = 0; count < i; count++) {
+    var key = checkBookmarkKeysArray[count];
 
+    if (checkBookmarkArray[key].url == draggedUrl) {
+      console.log("checkBookmarkArray[key].folder before = "+checkBookmarkArray[key].folder);
+      checkBookmarkArray[key].folder = "/test/";
+      console.log("checkBookmarkArray[key].folder = "+checkBookmarkArray[key].folder);
 
+      checkBookmarkArray[this.id].folder = "/test/";
+      console.log("checkBookmarkArray[this.id].folder = "+checkBookmarkArray[this.id].folder);
+
+      makeAFolder("/test/", currentFolder);
+      localStorage.clear();
+      pushToArray(checkBookmarkArray, checkBookmarkArray[key]);
+      pushToArray(checkBookmarkArray, checkBookmarkArray[this.id]);
+
+      console.log("Check at end of handle drop = "+checkBookmarkArray);
+
+      refreshIdArray();
+
+      return false;
+
+    }
+    else {
+      //do nothing
+    }
+  }
+
+  checkBookmarkArray[this.id].folder = "/test/";
+  makeAFolder("/test/", currentFolder);
+  refreshIdArray();
   return false;
 }
 
