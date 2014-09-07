@@ -133,24 +133,30 @@ var dragSrcEl = null;
 
 function metaBookmarkContainerHandleDragOver(e) {
 
-  var isLink = event.dataTransfer.types.contains("text/uri-list");
-  if (isLink) {
-      if (e.preventDefault) {
-      e.preventDefault(); // Necessary. Allows us to drop.
-    }
-  }
+  console.log("Started metaBookmarkContainerHandleDragOver");
+  //var isLink = event.dataTransfer.types.contains("text/uri-list");
+  //if (isLink) {
+  //    if (e.preventDefault) {
+  //   e.preventDefault(); // Necessary. Allows us to drop.
+  //  }
+  //}
+  event.preventDefault();
   return false;
 }
   
 function metaBookmarkContainerHandleDrop(e) {
   // this/e.target is current target element.
+
+  console.log("metaBookmarkContainerHandleDrop ran");
   var links = event.dataTransfer.getData("text/uri-list").split("\n");
+  console.log(links);
   var i = links.length;
   for (var count = 0; count < i; count++) {
-    if (links[i].indexOf("#") === 0){
-      continue;
-    }
-    dragInData(links[i]);
+    //if (links[i].indexOf("#") === 0){
+    //  continue;
+    //}
+    console.log("links[count] = "+links[count]);
+    dragInData(links[count]);
   }
 
   event.preventDefault();
