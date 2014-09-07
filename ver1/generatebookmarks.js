@@ -71,15 +71,15 @@ function storeBookmark() {
 		}
 		*/
 		// The array we use to store the bookmarks
-		var bookmarkArray = [];
 		//console.log(bookmarkArray);
 		// The new bookmark to be pushed to the array
+		var bookmarkArray = [];
+
 		var newBookmark = bookmarkData();
 		// If they have nothing in storage, run this
 	    if (localStorage.length === 0) {
 	    	bookmarkArray.push(newBookmark);
 	    	localStorage.setItem('bookmarks', JSON.stringify(bookmarkArray));
-
 	    }
 	    else {
 	    	// get the bookmark array
@@ -134,11 +134,30 @@ function dragInData(linkOrText) {
 	// tags will be in an array
 	//bookmark.tags = ["search", "google"];
 
+
 	console.log(bookmark);
-	bookmarkArray.push(bookmark);
-	localStorage.setItem('bookmarks', JSON.stringify(bookmarkArray));
+	// bookmarkArray[] needs to be defined here too
+	var bookmarkArray = [];
+
+	// different parameters for different local storage lengths
+	if (localStorage.length === 0) {
+    	bookmarkArray.push(bookmark);
+    	localStorage.setItem('bookmarks', JSON.stringify(bookmarkArray));
+    }
+    else {
+    	// get the bookmark array
+	    bookmarkArray = JSON.parse(localStorage.getItem('bookmarks'));
+	    console.log(bookmarkArray);
+
+	    // Push the new data (whether it be an object or anything else) onto the array
+	    bookmarkArray.push(bookmark);
+
+	    
+	    // Re-serialize the array back into a string and store it in localStorage
+	    localStorage.setItem('bookmarks', JSON.stringify(bookmarkArray));
+		// parse the object from local storage as JSON then console log it
+		console.log(JSON.parse(localStorage.getItem('bookmarks')));
+    }
 
 	refreshIdArray();
-
-	return bookmark;
 }
