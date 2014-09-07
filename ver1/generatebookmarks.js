@@ -8,7 +8,6 @@ function refreshIdArray() {
 }
 
 function getAllBookmarkKeys() {
-	console.log("I made it");
 	var bookmarksArray = JSON.parse(localStorage.getItem('bookmarks'));
 	var bookmarksKeysArray = Object.keys(bookmarksArray);
 	console.log(bookmarksKeysArray);
@@ -134,7 +133,7 @@ function dragInData(linkOrText) {
 	// tags will be in an array
 	//bookmark.tags = ["search", "google"];
 
-	console.log(bookmark);
+	console.log("bookmark = "+bookmark);
 
 	refreshIdArray();
 
