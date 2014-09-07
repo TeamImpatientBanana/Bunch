@@ -50,7 +50,7 @@ function makeABookmark(key) {
 	var annotation = bookmarksArray[key].annotation;
 
 	
-	var singleBookmarkHTML = "<div draggable='true' class='pure-u-1-3 pure-u-sm-1-6 pure-u-md-1-8 pure-u-lg-1-12 pure-u-xl-1-24 bookmarkcontainer "+key+"' draggable='true'><a target='_blank' href='"+url+"' title='"+name+"'><img draggable='false' class='bookmarkicon' src='"+icon+"'></a><div class='bookmarkname'>"+annotation+"</div></div>";
+	var singleBookmarkHTML = "<div draggable='true' class='pure-u-1-3 pure-u-sm-1-6 pure-u-md-1-8 pure-u-lg-1-12 pure-u-xl-1-24 bookmarkcontainer' id='"+key+"' draggable='true'><a target='_blank' href='"+url+"' title='"+name+"'><img draggable='false' class='bookmarkicon' src='"+icon+"'></a><div class='bookmarkname'>"+annotation+"</div></div>";
 
     return singleBookmarkHTML;
 }
@@ -65,18 +65,7 @@ function storeBookmark() {
 		var newBookmark = bookmarkData();
 
 		// If they have nothing in storage, run this
-	    if (localStorage.length === 0) {
-	    	bookmarkArray.push(newBookmark);
-	    	localStorage.setItem('bookmarks', JSON.stringify(bookmarkArray));
-	    }
-	    else {
-	    	// get the bookmark array
-		    bookmarkArray = JSON.parse(localStorage.getItem('bookmarks'));
-		    // Push the new data (whether it be an object or anything else) onto the array
-		    bookmarkArray.push(newBookmark);
-		    // Re-serialize the array back into a string and store it in localStorage
-		    localStorage.setItem('bookmarks', JSON.stringify(bookmarkArray));
-		}
+		pushToArray(bookmarkArray, newBookmark);
 		refreshIdArray();
 	}
 	else {
@@ -106,21 +95,41 @@ function dragInData(linkOrText) {
 	bookmark.annotation = linkOrText;
 	bookmark.icon = "pinkieicon.png";
 
+	// get the array from local storage to check it
+	checkBookmarkArray = JSON.parse(localStorage.getItem('bookmarks'));
+	console.log(checkBookmarkArray);
+
+	var i = checkBookmarkArray.length;
+
+	for (var count = 0; count < i; count++) {
+		if (bookmark.url == checkBookmarkArray[count].url) {
+			return false;
+		}
+		else {
+			// do nothing
+		}
+	}
+
 	// bookmarkArray[] needs to be defined here too
 	var bookmarkArray = [];
 
 	// different parameters for different local storage lengths
-	if (localStorage.length === 0) {
-    	bookmarkArray.push(bookmark);
+	pushToArray(bookmarkArray, bookmark);
+	refreshIdArray();
+}
+
+function pushToArray(bookmarkArray, newBookmark) {
+	// If they have nothing in storage, run this
+    if (localStorage.length === 0) {
+    	bookmarkArray.push(newBookmark);
     	localStorage.setItem('bookmarks', JSON.stringify(bookmarkArray));
     }
     else {
     	// get the bookmark array
 	    bookmarkArray = JSON.parse(localStorage.getItem('bookmarks'));
 	    // Push the new data (whether it be an object or anything else) onto the array
-	    bookmarkArray.push(bookmark);
+	    bookmarkArray.push(newBookmark);
 	    // Re-serialize the array back into a string and store it in localStorage
 	    localStorage.setItem('bookmarks', JSON.stringify(bookmarkArray));
-    }
-	refreshIdArray();
+	}
 }

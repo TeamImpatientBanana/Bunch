@@ -138,7 +138,7 @@ function metaBookmarkContainerHandleDrop(e) {
 
   var links = event.dataTransfer.getData("text/uri-list").split("\n");
   var i = links.length;
-  
+
   for (var count = 0; count < i; count++) {
     dragInData(links[count]);
   }
