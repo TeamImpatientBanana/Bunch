@@ -32,7 +32,11 @@
   <script type="text/javascript" src="./generatebookmarks.js"></script>
   <script type="text/javascript" src="./dnd.js"></script>
   <script>
-    window.onload = refreshIdArray;
+    
+    window.onload = function runOnLoad() {
+      refreshIdArray();
+      resetEventListeners();
+    };
   </script>
 </body>
   

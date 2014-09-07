@@ -1,10 +1,11 @@
 function refreshIdArray() {
 	var allBookmarksKeysArray = [];
-	allBookmarksKeysArray = getAllBookmarkKeys();
+	allBookmarksKeysArray = getAllBookmarkKeys();8
 
 	var currentFolderOrder = "orderByKey";
+	var currentFolder = "/";
 
-	loadPage(allBookmarksKeysArray, currentFolderOrder);
+	loadPage(allBookmarksKeysArray, currentFolderOrder, currentFolder);
 }
 
 function getAllBookmarkKeys() {
@@ -14,7 +15,7 @@ function getAllBookmarkKeys() {
 	return bookmarksKeysArray;
 }
 
-function loadPage(allBookmarksKeysArray, currentFolderOrder) {
+function loadPage(allBookmarksKeysArray, currentFolderOrder, currentFolder) {
 
 	var codeOfBookmarksOnPage = "";
 
@@ -30,11 +31,20 @@ function loadPage(allBookmarksKeysArray, currentFolderOrder) {
 			break;
 	}
 
-	if(allBookmarksKeysArray) {
-	var i = allBookmarksKeysArray.length;
+	if (allBookmarksKeysArray) {
+
+		var i = allBookmarksKeysArray.length;
+
+		var bookmarksArray = JSON.parse(localStorage.getItem('bookmarks'));
+
 		for (var count = 0; count < i; ++count) {
 			var key = allBookmarksKeysArray[count];
-			codeOfBookmarksOnPage += makeABookmark(key);
+			if (currentFolder == bookmarksArray[key].folder) {
+				codeOfBookmarksOnPage += makeABookmark(key);
+			}
+			else {
+				//do nothing because those bookmarks arent in this folder
+			}
 		}
 	}
 	document.getElementById("metaBookmarkContainer").innerHTML = codeOfBookmarksOnPage;
@@ -82,6 +92,7 @@ function bookmarkData() {
 	bookmark.url = document.getElementById('bookmarkURL').value;
 	bookmark.annotation = document.getElementById('bookmarkAnnotation').value;
 	bookmark.icon = "pinkieicon.png";
+	bookmark.folder = "/";
 
 	return bookmark;
 }
@@ -94,10 +105,10 @@ function dragInData(linkOrText) {
 	bookmark.url = linkOrText;
 	bookmark.annotation = linkOrText;
 	bookmark.icon = "pinkieicon.png";
+	bookmark.folder = "/";
 
 	// get the array from local storage to check it
-	checkBookmarkArray = JSON.parse(localStorage.getItem('bookmarks'));
-	console.log(checkBookmarkArray);
+	var checkBookmarkArray = JSON.parse(localStorage.getItem('bookmarks'));
 
 	var i = checkBookmarkArray.length;
 

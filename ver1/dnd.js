@@ -1,139 +1,113 @@
-var bookmarks = document.querySelectorAll('.bookmarkcontainer');
+function resetEventListeners() {
+  var bookmarks = document.querySelectorAll('.bookmarkcontainer');
+  console.log("starting bookmarks = "+bookmarks);
 
-var folders = document.querySelectorAll('.bookmarkfolder');
+  var folders = document.querySelectorAll('.bookmarkfolder');
 
-var metaBookmarkContainer = document.querySelectorAll('#metaBookmarkContainer');
+  var metaBookmarkContainer = document.querySelectorAll('#metaBookmarkContainer');
 
-[].forEach.call(bookmarks, function(bookmarks) {
-  bookmarks.addEventListener('dragstart', bookmarkHandleDragStart, false);
-  bookmarks.addEventListener('drop', bookmarkHandleDrop, false);
-  bookmarks.addEventListener('dragend', bookmarkHandleDragEnd, false);
-});
+  [].forEach.call(bookmarks, function(bookmarks) {
+    bookmarks.addEventListener('dragstart', bookmarkHandleDragStart, false);
+    bookmarks.addEventListener('drop', bookmarkHandleDrop, false);
+    bookmarks.addEventListener('dragend', bookmarkHandleDragEnd, false);
+    bookmarks.addEventListener('dragover', bookmarkHandleDragOver, false);
+    bookmarks.addEventListener('dragleave', bookmarkHandleDragLeave, false);
+  });
 
-[].forEach.call(folders, function(folders) {
-  folders.addEventListener('dragstart', folderHandleDragStart, false);
-  folders.addEventListener('dragenter', folderHandleDragEnter, false);
-  folders.addEventListener('dragover', folderHandleDragOver, false);
-  folders.addEventListener('dragleave', folderHandleDragLeave, false);
-  folders.addEventListener('drop', folderHandleDrop, false);
-  folders.addEventListener('dragend', folderHandleDragEnd, false);
-});
+  [].forEach.call(folders, function(folders) {
+    folders.addEventListener('dragstart', folderHandleDragStart, false);
+    folders.addEventListener('dragenter', folderHandleDragEnter, false);
+    folders.addEventListener('dragover', folderHandleDragOver, false);
+    folders.addEventListener('dragleave', folderHandleDragLeave, false);
+    folders.addEventListener('drop', folderHandleDrop, false);
+    folders.addEventListener('dragend', folderHandleDragEnd, false);
+  });
 
-[].forEach.call(metaBookmarkContainer, function(metaBookmarkContainer) {
-  metaBookmarkContainer.addEventListener('dragover', metaBookmarkContainerHandleDragOver, false);
-  metaBookmarkContainer.addEventListener('drop', metaBookmarkContainerHandleDrop, false);
-});
+  [].forEach.call(metaBookmarkContainer, function(metaBookmarkContainer) {
+    metaBookmarkContainer.addEventListener('dragover', metaBookmarkContainerHandleDragOver, false);
+    metaBookmarkContainer.addEventListener('drop', metaBookmarkContainerHandleDrop, false);
+  });
+}
 
 //Bookmarks
 
-var dragSrcEl = null;
-
-function bookmarkHandleDragStart(e) {
+function bookmarkHandleDragStart() {
   // Target (this) element is the source node.
   this.style.opacity = '0.4';
-
-  if (this.classList.contains("bookmarkscontainer")) {
-    dragSrcEl = this;
-  }
-
-  e.dataTransfer.effectAllowed = 'move';
+  return false;
 }
 
-function bookmarkHandleDragEnd(e) {
-  // this/e.target is the source node.
+function bookmarkHandleDragEnd() {
   this.style.opacity = '1.0';
-
-  [].forEach.call(folders, function (folders) {
-    folders.classList.remove('over');
-  });
+  return false;
 }
   
-function bookmarkHandleDrop(e) {
-  // this/e.target is current target element.
-  if (e.stopPropagation) {
-    e.stopPropagation(); // Stops some browsers from redirecting.
-  }
+function bookmarkHandleDrop() {
+  this.style.opacity = '1.0';
 
-  // Don't do anything if dropping the same column we're dragging.
-  if (dragSrcEl != this) {
-    // Set the source column's HTML to the HTML of the column we dropped on.
-    dragSrcEl.innerHTML = this.innerHTML;
-    this.innerHTML = e.dataTransfer.getData('text/html');
-  }
+  var draggedUrl = event.dataTransfer.getData("text/uri-list");
 
+  var checkBookmarkArray = JSON.parse(localStorage.getItem('bookmarks'));
+
+  // compare this.id with array
+
+  draggedOntoUrl = checkBookmarkArray[this.id].url;
+
+
+
+  return false;
+}
+
+function bookmarkHandleDragOver() {
+  this.style.opacity = '0.4';
+  return false;
+}
+
+function bookmarkHandleDragLeave() {
+  this.style.opacity = '1.0';
   return false;
 }
 
 //Folders
 
-var dragSrcEl = null;
-
-function folderHandleDragStart(e) {
+function folderHandleDragStart() {
   // Target (this) element is the source node.
   this.style.opacity = '0.4';
-
-  if (this.classList.contains("bookmarkscontainer")) {
-    dragSrcEl = this;
-  }
-
-  e.dataTransfer.effectAllowed = 'move';
-  e.dataTransfer.setData('text/html', this.innerHTML);
-}
-
-function folderHandleDragEnter(e) {
-  // this / e.target is the current hover target.
-  this.classList.add('over');
-}
-
-function folderHandleDragOver(e) {
-  if (e.preventDefault) {
-    e.preventDefault(); // Necessary. Allows us to drop.
-  }
-
-  e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
-
   return false;
 }
 
-function folderHandleDragLeave(e) {
-  this.classList.remove('over');  // this / e.target is previous target element.
+function folderHandleDragEnter() {
+  // this / e.target is the current hover target.
+  this.classList.add('over');
+  return false;
 }
 
-function folderHandleDragEnd(e) {
-  // this/e.target is the source node.
-  this.style.opacity = '1.0';
+function folderHandleDragOver() {
+  return false;
+}
 
-  [].forEach.call(bookmarks, function (bookmarks) {
-    bookmarks.classList.remove('over');
-  });
+function folderHandleDragLeave() {
+  this.classList.remove('over');  // this / e.target is previous target element.
+  return false;
+}
+
+function folderHandleDragEnd() {
+  this.style.opacity = '1.0';
+  return false;
 }
   
-function folderHandleDrop(e) {
-  // this/e.target is current target element.
-  if (e.stopPropagation) {
-    e.stopPropagation(); // Stops some browsers from redirecting.
-  }
-
-  // Don't do anything if dropping the same column we're dragging.
-  if (dragSrcEl != this) {
-    // Set the source column's HTML to the HTML of the column we dropped on.
-    dragSrcEl.innerHTML = this.innerHTML;
-    this.innerHTML = e.dataTransfer.getData('text/html');
-  }
-
+function folderHandleDrop() {
   return false;
 }
 
 //Body
 
-var dragSrcEl = null;
-
-function metaBookmarkContainerHandleDragOver(e) {
+function metaBookmarkContainerHandleDragOver() {
   event.preventDefault();
   return false;
 }
   
-function metaBookmarkContainerHandleDrop(e) {
+function metaBookmarkContainerHandleDrop() {
   // this/e.target is current target element.
 
   var links = event.dataTransfer.getData("text/uri-list").split("\n");
