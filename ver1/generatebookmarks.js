@@ -120,3 +120,23 @@ function bookmarkData() {
 
 	return bookmark;
 }
+
+function dragInData(linkOrText) {
+	// define bookmark object
+	var bookmark = {};
+	//bookmark.id = (new Date()).getTime();
+	bookmark.name = linkOrText;
+	bookmark.url = linkOrText;
+	bookmark.annotation = linkOrText;
+	bookmark.icon = "pinkieicon.png";
+	//bookmark.folder = "/";
+
+	// tags will be in an array
+	//bookmark.tags = ["search", "google"];
+
+	console.log(bookmark);
+
+	refreshIdArray();
+
+	return bookmark;
+}

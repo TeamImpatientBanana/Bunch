@@ -4,6 +4,8 @@ var bookmarks = document.querySelectorAll('.bookmarkcontainer');
 
 var folders = document.querySelectorAll('.bookmarkfolder');
 
+var metaBookmarkContainer = document.querySelectorAll('#metaBookmarkContainer');
+
 [].forEach.call(bookmarks, function(bookmarks) {
   bookmarks.addEventListener('dragstart', bookmarkHandleDragStart, false);
   bookmarks.addEventListener('drop', bookmarkHandleDrop, false);
@@ -19,6 +21,10 @@ var folders = document.querySelectorAll('.bookmarkfolder');
   folders.addEventListener('dragend', folderHandleDragEnd, false);
 });
 
+[].forEach.call(metaBookmarkContainer, function(metaBookmarkContainer) {
+  metaBookmarkContainer.addEventListener('dragover', metaBookmarkContainerHandleDragOver, false);
+  metaBookmarkContainer.addEventListener('drop', metaBookmarkContainerHandleDrop, false);
+});
 
 //Bookmarks
 
@@ -120,3 +126,49 @@ function folderHandleDrop(e) {
 
   return false;
 }
+
+//Body
+
+var dragSrcEl = null;
+
+function metaBookmarkContainerHandleDragOver(e) {
+
+  var isLink = event.dataTransfer.types.contains("text/uri-list");
+  if (isLink) {
+      if (e.preventDefault) {
+      e.preventDefault(); // Necessary. Allows us to drop.
+    }
+  }
+  return false;
+}
+  
+function metaBookmarkContainerHandleDrop(e) {
+  // this/e.target is current target element.
+  var links = event.dataTransfer.getData("text/uri-list").split("\n");
+  var i = links.length;
+  for (var count = 0; count < i; count++) {
+    if (links[i].indexOf("#") === 0){
+      continue;
+    }
+    dragInData(links[i]);
+  }
+
+  event.preventDefault();
+
+  return false;
+}// Hello.
+//
+// This is JSHint, a tool that helps to detect errors and potential
+// problems in your JavaScript code.
+//
+// To start, simply enter some JavaScript anywhere on this page. Your
+// report will appear on the right side.
+//
+// Additionally, you can toggle specific options in the Configure
+// menu.
+
+function main() {
+  return 'Hello, World!';
+}
+
+main();
