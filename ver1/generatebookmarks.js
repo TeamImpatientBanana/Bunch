@@ -117,7 +117,7 @@ function bookmarkData() {
 	bookmark.name = document.getElementById('bookmarkName').value;
 	bookmark.url = document.getElementById('bookmarkURL').value;
 	bookmark.annotation = document.getElementById('bookmarkAnnotation').value;
-	bookmark.icon = "pinkieicon.png";
+	bookmark.icon = "chromeicon.png";
 	bookmark.folder = "/";
 
 	return bookmark;
@@ -130,7 +130,7 @@ function dragInData(linkOrText) {
 	bookmark.name = linkOrText;
 	bookmark.url = linkOrText;
 	bookmark.annotation = linkOrText;
-	bookmark.icon = "pinkieicon.png";
+	bookmark.icon = "chromeicon.png";
 	bookmark.folder = "/";
 
 	// get the array from local storage to check it
