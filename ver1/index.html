@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="http://yui.yahooapis.com/combo?pure/0.5.0/base-min.css&pure/0.5.0/grids-min.css&pure/0.5.0/grids-responsive-old-ie-min.css">
   <![endif]-->
   <!--[if gt IE 8]><!-->
-    <link rel="stylesheet" href="http://yui.yahooapis.com/combo?pure/0.5.0/base-min.css&pure/0.5.0/grids-min.css&pure/0.5.0/grids-responsive-min.css&pure/0.5.0/forms-min.css">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/combo?pure/0.5.0/base-min.css&pure/0.5.0/grids-min.css&pure/0.5.0/grids-responsive-min.css">
   <!--<![endif]-->
 
   <link rel="stylesheet" href="normalize.css">
@@ -16,12 +17,12 @@
 
 <body>
 
-  <form onsubmit="storeBookmark();">
+  <form class="pure-form" onsubmit="storeBookmark();">
     <input name="bookmarkName" id="bookmarkName" type="text" placeholder="Bookmark Name" required />
     <input name="bookmarkURL" id="bookmarkURL" type="url" placeholder="Bookmark URL" required />
     <input name="bookmarkAnnotation" id="bookmarkAnnotation" type="text" placeholder="Bookmark Annotation" />
-    <input type="submit" value="Submit">
-    <input type="reset" value="Reset">
+    <input class="pure-button pure-button-primary" type="submit" value="Submit">
+    <input class="pure-button pure-button-primary" type="reset" value="Reset">
   </form>
 
   <div class="pure-g" id="metaBookmarkContainer">
