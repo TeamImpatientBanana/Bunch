@@ -14,8 +14,8 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="BLink.svg"
-   inkscape:export-filename="C:\Users\Kaitlin\Desktop\BLink.png"
+   sodipodi:docname="BIcon.svg"
+   inkscape:export-filename="C:\Users\Kaitlin\Documents\GitHub\Bunch\ver1\BIcon.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -28,7 +28,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="62.769892"
+     inkscape:cx="-48.658679"
      inkscape:cy="37.675219"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -60,7 +60,7 @@
      id="layer1"
      transform="translate(-314.94369,-552.75254)">
     <path
-       style="fill:#3c2a00;fill-opacity:1;stroke:none;display:inline"
+       style="fill:#503400;fill-opacity:1;stroke:none;display:inline"
        d="m 314.96993,601.20149 c 0.20999,-1.92312 0.58481,-3.65793 2.7159,-5.76578 10.00317,-4.67368 23.49219,1.81133 27.94023,2.72401 8.89607,1.82537 19.66226,3.4025 28.97586,0.45009 3.1745,-1.00633 6.36159,-2.74725 9.483,-4.85528 1.56071,-1.05402 2.08916,-1.4864 2.15033,-1.52664 l 8.62199,-7.0898 c 5.82364,-4.94943 9.38821,-8.33868 13.43441,-10.34473 3.22646,-1.59964 6.97904,-1.20581 10.31435,-2.47358 2.61494,-0.99395 5.91527,-2.29207 7.50266,-3.98626 1.58737,-1.69418 0.52777,-6.46537 0.93237,-9.67709 0.30224,-2.39922 0.34094,-5.89684 2.19548,-5.90387 2.99021,-0.0113 5.80818,5.07977 3.60395,9.49216 -1.89302,3.78944 -3.51296,4.97298 -3.74594,10.83001 -0.13852,3.4822 2.28627,16.11067 -0.16756,23.36262 -3.66304,10.82565 -9.19529,16.17859 -20.28623,25.81691 -3.39933,2.96525 -6.80002,5.27471 -10.20231,6.82591 -3.81141,1.99744 -7.81606,3.5734 -12.31729,4.96897 -9.00247,2.79115 -19.03571,4.18885 -28.70434,3.43428 -19.33728,-1.50917 -37.21606,-11.62748 -42.4731,-36.42581"
        id="path3855"
        inkscape:connector-curvature="0"

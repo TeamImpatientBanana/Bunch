@@ -42,5 +42,18 @@
 }
 
 #metaBookmarkContainer {
-  /*height: 1000px;*/
+    /*height: 1000px;*/
+}
+
+body { margin-left: 40px;
+       margin-top: 50px;
+       background-color: #B1E5FF;
+}
+
+div { padding-top: 15px; 
+}
+input {margin: 4px;
+}
+
+h1 { font-family: Raleway;
 }
