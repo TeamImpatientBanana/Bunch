@@ -14,11 +14,16 @@
 	text-align: center;
 }
 
+.pure-button-primary {
+  background-color: #442100;
+}
+
 .bookmarkname {
 	padding-left: 5px;
 	padding-right: 5px;
 	overflow: hidden;
-    white-space: nowrap;
+  white-space: nowrap;
+  color:#442100;
 }
 
 /*drag and drop bullshit*/
@@ -46,14 +51,20 @@
 }
 
 body { margin-left: 40px;
-       margin-top: 50px;
        background-color: #B1E5FF;
 }
 
 div { padding-top: 15px; 
 }
-input {margin: 4px;
+input {padding-left: 4px;
 }
 
 h1 { font-family: Raleway;
+     font-size: 100px;
+     color:#442100;
+     margin: 0.26em;
+}
+
+.banana {
+  width: 100px;
 }
