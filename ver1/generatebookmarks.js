@@ -76,7 +76,7 @@ function makeAFolder(path, currentPath) {
 	bookmark.name = path;
 	bookmark.url = "";
 	bookmark.annotation = path;
-	bookmark.icon = "fluttershyfolder.png";
+	bookmark.icon = "BFolder.svg";
 	bookmark.folder = currentPath;
 
 	// get the array from local storage to check it
@@ -117,7 +117,7 @@ function bookmarkData() {
 	bookmark.name = document.getElementById('bookmarkName').value;
 	bookmark.url = document.getElementById('bookmarkURL').value;
 	bookmark.annotation = document.getElementById('bookmarkAnnotation').value;
-	bookmark.icon = "chromeicon.png";
+	bookmark.icon = "BIcon.svg";
 	bookmark.folder = "/";
 
 	return bookmark;
@@ -130,7 +130,7 @@ function dragInData(linkOrText) {
 	bookmark.name = linkOrText;
 	bookmark.url = linkOrText;
 	bookmark.annotation = linkOrText;
-	bookmark.icon = "chromeicon.png";
+	bookmark.icon = "BIcon.svg";
 	bookmark.folder = "/";
 
 	// get the array from local storage to check it
